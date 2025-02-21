@@ -1,21 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Logo from './components/logo';
+import Botao from './components/botao';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Logo style={styles.logo}/>
       <Text style={styles.text}>Mist</Text>
-      <StatusBar style="auto" />
+      <Botao title={'Iniciar'} onPress={()=>{console.log('botao pressionado')}}/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   logo:{
-    width: 300, 
-    height: 300
+    margin: 50,
+    width: 150, 
+    height: 150,
+    justifyContent: 'center',
+    alignSelf:'center'
   },
   text:{
     color:'white',
@@ -26,6 +29,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
 });
