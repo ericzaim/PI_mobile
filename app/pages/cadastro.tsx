@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { StackScreenProps } from '@react-navigation/stack';
-import { RootStackParamList } from '../router/navigation';
 import Logo from '../components/logo';
 import Botao from '../components/botao';
 import Input from '../components/input';
 import Icon from 'react-native-vector-icons/Feather';
 import { styles } from '../styles';
+import { router } from 'expo-router';
 
-// Tipagem das props da tela
-type Props = StackScreenProps<RootStackParamList, 'Cadastro'>;
-
-export default function Cadastro({ navigation }: Props) {
+export default function Cadastro() {
   const [email,setEmail]=useState('');
   const [senha,setSenha]=useState('');
   const [ocultarSenha, setOcultarSenha] = useState(true);
@@ -21,8 +17,6 @@ export default function Cadastro({ navigation }: Props) {
     return email.includes('@') && (email.includes('.com') || email.includes('.com.br'));
   }
   
-  //LoadFont()
-
   return (
     <View style={[styles.container,{backgroundColor:'#008dff'}]}>
     <Logo/>
@@ -56,7 +50,7 @@ export default function Cadastro({ navigation }: Props) {
           <Icon 
             name={ocultarSenha ? "eye-off" : "eye"} 
             size={20} 
-            color="gray"
+            color="grey"
           />
         </TouchableOpacity>
       </View>
@@ -70,7 +64,7 @@ export default function Cadastro({ navigation }: Props) {
             borderWidth:1
           }
         } 
-        onPress={() => navigation.goBack()}
+        onPress={() => router.push('Inicio')}
       />
       <Botao title="Cadastrar" style={{
         width:'45%',
@@ -80,7 +74,7 @@ export default function Cadastro({ navigation }: Props) {
         onPress={()=>{
           if(isValidEmail() == true){
           setHandleEmail(true),
-          navigation.navigate('Home')
+          router.push('Inicio')
         }else{
             setHandleEmail(false)
           }
