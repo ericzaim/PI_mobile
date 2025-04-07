@@ -1,38 +1,31 @@
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, StyleSheet, ViewStyle, StyleProp } from "react-native";
 
 interface BotaoProps {
   title: string;
   backgroundColor?: string;
   textColor?: string;
   onPress:() => void
+  style?: StyleProp<ViewStyle>;
 }
 
-export default function Botao({onPress,title, backgroundColor = '#e8f221', textColor = 'black' }: BotaoProps) {
+export default function Botao({onPress,title,style, backgroundColor = '#0070ff', textColor = 'white' }: BotaoProps) {
   return (
-    <TouchableOpacity style={[styles.button, { backgroundColor }]} onPress={(onPress)}>
+    <TouchableOpacity style={[styles.button,style, { backgroundColor }]} onPress={(onPress)}>
       <Text style={[styles.text, { color: textColor }]}>{title}</Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    button: {
-      position: 'absolute',
-      bottom: 50,
-      width: '80%',
-      paddingVertical: 15,
-      borderRadius: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
+  button: {
+    bottom: 20,
+    width: '90%',
+    paddingVertical: '2%',
+    borderRadius: 8,
+    alignItems: 'center',
+    paddingTop: 10,
+  },
     text: {
-      fontSize: 30,
-      fontWeight: 'bold',
-      fontFamily: 'Papyrus'
+      fontSize: 14,
     },
   });

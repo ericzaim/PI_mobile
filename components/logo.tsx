@@ -1,11 +1,12 @@
-import { Image, ImageStyle, StyleProp } from "react-native";
+import { Text, TextStyle } from 'react-native';
+import { styles } from "../styles";
 
 interface LogoProps {
-    style?: StyleProp<ImageStyle>;
-  }
+    style?: TextStyle; 
+}
 
-export default function Logo({style}:LogoProps){
-    return(
-        <Image source={{uri: 'mist.jpeg',}} style={style}/>
-    )
+export default function Logo({ style }: LogoProps) {
+    return (
+        <Text style={[styles.logo, style]}>Agrococ</Text>
+    );
 }
