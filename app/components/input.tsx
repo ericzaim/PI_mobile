@@ -1,4 +1,7 @@
-import { View, TextInput, StyleSheet, StyleProp, ViewStyle } from 'react-native';
+import { useState } from 'react';
+import { View, TextInput, StyleSheet, StyleProp, ViewStyle, TouchableOpacity } from 'react-native';
+import { useAuth } from '../../context/auth';
+import Icon from 'react-native-vector-icons/Feather';
 
 interface InputProps{ 
   value:string;
@@ -10,9 +13,9 @@ interface InputProps{
 
 export default function Input({ value,style, onChangeText, placeholder, secureTextEntry }:InputProps){
   return (
-    <View style={[styles.container, style]}>
+    <View style={[inputStyles.container, style]}>
       <TextInput
-        style={[styles.input]}
+        style={[inputStyles.input]}
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
@@ -23,7 +26,33 @@ export default function Input({ value,style, onChangeText, placeholder, secureTe
   );
 };
 
-const styles = StyleSheet.create({
+export function InputSenha(){
+    const [ocultarSenha, setOcultarSenha] = useState(true);
+    const { user, setUser } = useAuth()
+  return(
+    <View style={inputStyles.containersenha}>
+              <TextInput
+                style={inputStyles.senha}
+                  value={user.senha} 
+                  placeholder='Senha'
+                  onChangeText={text => setUser({...user,senha:text})} 
+                  secureTextEntry={ocultarSenha}
+                  placeholderTextColor="rgba(0, 0, 0, 0.5)"
+              />
+              <View style={{alignSelf:'center'}}>
+                <TouchableOpacity onPress={() => setOcultarSenha(!ocultarSenha)}>
+                <Icon 
+                name={ocultarSenha ? "eye-off" : "eye"} 
+                size={20} 
+                color="gray"
+                />
+                </TouchableOpacity>
+                </View>
+                </View>
+  )
+}
+
+export const inputStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignContent: 'flex-start',
@@ -38,7 +67,23 @@ const styles = StyleSheet.create({
     width: '100%',
     fontStyle:'italic',
     padding: 8
-  }
+  },
+  containersenha:{
+    flexDirection: "row",
+    alignItems: "flex-start",
+    paddingHorizontal: 10,
+    marginBottom:'10%',
+    borderWidth: 2,
+    borderColor: 'rgba(0, 0, 0, 0.2)',
+    borderRadius: 10,
+    width:'90%',
+    backgroundColor:'rgb(235, 235, 235)'
+  },
+  senha: {
+    padding:8,
+    width:'94%',
+    fontStyle:'italic',
+  },
 })
 /*justifyContent: 'center',
 alignItems: 'center',
