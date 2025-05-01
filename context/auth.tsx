@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState } from 'react'
 import { router } from 'expo-router'
+import { getUser } from '../app/api'
 
-interface IUser {
+export interface IUser {
   email: string
   senha: string
 }
@@ -9,7 +10,7 @@ interface IUser {
 interface IAuthContext {
   user: IUser
   setUser: (user: IUser) => void
-  handleLogin: () => void
+  handleLogin: (user: IUser) => void
 }
 
 interface AuthProviderProps {
@@ -18,15 +19,25 @@ interface AuthProviderProps {
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext)
 
+
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<IUser>({email: '', senha: ''})
 
-  function handleLogin() {
-    if(user && user.email === 'admin' && user.senha === 'admin') {
-      router.push('loja')
-    } else {
-      alert('Usuário ou senha inválidos')
-    }
+  function handleLogin(user: IUser) {
+    getUser(user).then(response => {
+      if (response && response.ok) {
+        if (response.data.email === user.email && response.data.senha === user.senha) {
+          router.push('/loja')
+        }else {
+          return alert('Invalid email or password')
+        }
+      } else {
+      alert('User not found');
+      }
+    }).catch(error => {
+      console.error('Erro ao verificar usuário:', error);
+      alert('Ocorreu um erro. Tente novamente mais tarde.');
+    });
   }
 
   return (
