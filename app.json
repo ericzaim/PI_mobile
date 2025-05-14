@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "agrococ",
-    "slug": "agrococ",
+    "name": "habittracker",
+    "slug": "habittracker",
     "scheme": "app_mobile",
     "version": "1.0.0",
     "orientation": "portrait",
