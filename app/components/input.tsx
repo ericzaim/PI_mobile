@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { View, TextInput, StyleSheet, StyleProp, ViewStyle, TouchableOpacity } from 'react-native';
 import { useAuth } from '../../context/auth';
 import Icon from 'react-native-vector-icons/Feather';
+import { postUser } from '../api';
 
 interface InputProps{ 
   value:string;
-  placeholder: string;
+  placeholder?: string;
   onChangeText: (text: string) => void;
-  secureTextEntry?: boolean;
   style?:StyleProp<ViewStyle>;
 }
 
-export default function Input({ value,style, onChangeText, placeholder, secureTextEntry }:InputProps){
+export default function Input({ value,style, onChangeText, placeholder }:InputProps){
   return (
     <View style={[inputStyles.container, style]}>
       <TextInput
@@ -20,22 +20,21 @@ export default function Input({ value,style, onChangeText, placeholder, secureTe
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor="rgba(0, 0, 0, 0.5)"
-        secureTextEntry={secureTextEntry}
       />
     </View>
   );
 };
 
-export function InputSenha(){
+export function InputSenha({ value , onChangeText}:InputProps){
     const [ocultarSenha, setOcultarSenha] = useState(true);
-    const { user, setUser } = useAuth()
+   
   return(
     <View style={inputStyles.containersenha}>
               <TextInput
                 style={inputStyles.senha}
-                  value={user.senha} 
+                  value={ value } 
                   placeholder='Senha'
-                  onChangeText={text => setUser({...user,senha:text})} 
+                  onChangeText= { onChangeText } 
                   secureTextEntry={ocultarSenha}
                   placeholderTextColor="rgba(0, 0, 0, 0.5)"
               />

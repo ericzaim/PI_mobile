@@ -7,6 +7,6 @@ interface LogoProps {
 
 export default function Logo({ style }: LogoProps) {
     return (
-        <Text style={[styles.logo, style]}>Agrococ</Text>
+        <Text style={[styles.logo, style]}>HabitTracker</Text>
     );
 }

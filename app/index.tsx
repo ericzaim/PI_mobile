@@ -1,14 +1,16 @@
 import { useAuth } from '../context/auth';
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, ImageBackground, Platform } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Botao from './components/botao';
+import Botao, { BotaoG } from './components/botao';
 import { styles } from './styles';
 import Input, { InputSenha } from './components/input';
 import { router } from 'expo-router';
+import BotaoY from './components/botao';
 
 export default function App() {
-  const { user, handleLogin, setUser } = useAuth();
+  const { user, /*handleLogin,*/setUser } = useAuth();
+  const [ senha,setSenha ] = useState('')
 
   return (
     <ImageBackground
@@ -29,22 +31,22 @@ export default function App() {
           </Text>
           <View style={homestyles.containerbotoes}>
             <Input
-              style={{ marginBottom: '3%', marginTop: '15%', backgroundColor: 'rgb(235, 235, 235)' }}
+              style={{ marginBottom: '3%', marginTop: '15%',backgroundColor: 'rgb(235, 235, 235)' }}
               value={user.email}
               placeholder="email@email.com"
               onChangeText={text => setUser({ ...user, email: text })}
             />
-            <InputSenha />
+            <InputSenha 
+            value={senha} 
+            onChangeText={(senha) => setSenha(senha) }/>
           </View>
           <View style={homestyles.linha}></View>
-          <Botao
+          <BotaoY
             style={{ marginBottom: '3%', marginTop: '5%' }}
-            backgroundColor="rgb(255, 196, 0)"
             title="Login"
-            onPress={() => handleLogin(user)}
+            onPress={()=>router.push('tasks')/*() => handleLogin(user)*/}
           />
-          <Botao
-            backgroundColor="rgb(117, 117, 117)"
+          <BotaoG
             title="Cadastre-se"
             onPress={() => router.push('cadastro')}
           />

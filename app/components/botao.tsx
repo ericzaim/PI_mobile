@@ -7,17 +7,31 @@ interface BotaoProps {
   onPress:() => void
   style?: StyleProp<ViewStyle>;
 }
-
-export default function Botao({onPress,title,style, backgroundColor , textColor = 'white' }: BotaoProps) {
+export default function Botao({onPress,title,style, textColor = 'white' }: BotaoProps) {
   return (
-    <TouchableOpacity style={[styles.button,style, { backgroundColor }]} onPress={(onPress)}>
+    <TouchableOpacity style={[styles.buttonY,style]} onPress={(onPress)}>
+      <Text style={[styles.text, { color: textColor }]}>{title}</Text>
+    </TouchableOpacity>
+  );
+}
+export function BotaoY({onPress,title,style, textColor = 'white' }: BotaoProps) {
+  return (
+    <TouchableOpacity style={[styles.buttonY,style]} onPress={(onPress)}>
+      <Text style={[styles.text, { color: textColor }]}>{title}</Text>
+    </TouchableOpacity>
+  );
+}
+
+export function BotaoG({onPress,title,style, textColor = 'white' }: BotaoProps) {
+  return (
+    <TouchableOpacity style={[styles.buttonG,style]} onPress={(onPress)}>
       <Text style={[styles.text, { color: textColor }]}>{title}</Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
+  buttonY: {
     bottom: 20,
     width: '90%',
     paddingVertical: '2%',
@@ -25,6 +39,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 10,
     backgroundColor: 'rgb(255, 196, 0)'
+  },
+  buttonG: {
+    bottom: 20,
+    width: '90%',
+    paddingVertical: '2%',
+    borderRadius: 8,
+    alignItems: 'center',
+    paddingTop: 10,
+    backgroundColor: "rgb(117, 117, 117)"
   },
     text: {
       fontSize: 14,
