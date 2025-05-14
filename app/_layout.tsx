@@ -1,5 +1,5 @@
 import { Slot } from "expo-router"
-import { AuthProvider } from "./context/auth"
+import { AuthProvider } from "../context/auth"
 import { useFonts } from 'expo-font';
 
 export default function Layout() {
@@ -9,8 +9,10 @@ export default function Layout() {
         });
         
   return (
-    <AuthProvider>
-      <Slot />
+     <AuthProvider>
+       <Slot />
     </AuthProvider>
   )
 }
+/*
+   */

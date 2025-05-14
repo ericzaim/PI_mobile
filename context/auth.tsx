@@ -10,7 +10,7 @@ export interface IUser {
 interface IAuthContext {
   user: IUser
   setUser: (user: IUser) => void
-  handleLogin: (user: IUser) => void
+  //handleLogin: (user: IUser) => void
 }
 
 interface AuthProviderProps {
@@ -23,7 +23,7 @@ const AuthContext = createContext<IAuthContext>({} as IAuthContext)
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<IUser>({email: '', senha: ''})
 
-  function handleLogin(user: IUser) {
+  /*function handleLogin(user: IUser) {
     getUser(user).then(response => {
       if (response && response.ok) {
         if (response.data.email === user.email && response.data.senha === user.senha) {
@@ -38,10 +38,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       console.error('Erro ao verificar usuário:', error);
       alert('Ocorreu um erro. Tente novamente mais tarde.');
     });
-  }
+  }*/
 
   return (
-    <AuthContext.Provider value={{ user, handleLogin, setUser }}>
+    <AuthContext.Provider value={{ user, /*handleLogin,*/ setUser }}>
       {children}
     </AuthContext.Provider>
   )
