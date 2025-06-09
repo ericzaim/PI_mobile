@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { View, TextInput, StyleSheet, StyleProp, ViewStyle, TouchableOpacity } from 'react-native';
-import { useAuth } from '../../context/auth';
 import Icon from 'react-native-vector-icons/Feather';
-import { postUser } from '../api';
-
 interface InputProps{ 
   value:string;
   placeholder?: string;

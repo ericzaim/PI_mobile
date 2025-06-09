@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, ImageBackground, Alert } from 'react-native';
+import { View, Text, ImageBackground, Alert } from 'react-native';
 import Logo from './components/logo';
 import { BotaoG } from './components/botao';
 import Input, { InputSenha } from './components/input';
@@ -12,7 +12,8 @@ import BotaoY from './components/botao';
 export default function Cadastro() {
   const [email,setEmail]=useState('');
   const [handleEmail,setHandleEmail] = useState(true);
-  const [senha,setSenha] = useState('');
+  const [password,setpassword] = useState('');
+  const [name,setName] = useState('');
 
 
   const isValidEmail = () => {
@@ -20,16 +21,17 @@ export default function Cadastro() {
   }
   
   return (
-    <ImageBackground
-    source={require('../assets/images/cadastro.jpg')}
-    style={styles.background}
-    resizeMode="cover">
-
+     <ImageBackground
+        source={require('../assets/images/cadastro.jpg')}
+        style={styles.background}
+        resizeMode="cover">
     <View style={styles.container}>
-    <Logo/>
+    <Logo style={{marginVertical:'15%'}}/>
     <View 
     style={{
+      display: 'flex',
       width:'90%',
+      alignContent:'center',
       backgroundColor:'white',
       borderRadius:10, 
       justifyContent:'center',
@@ -40,13 +42,19 @@ export default function Cadastro() {
     <Text style={{width:'80%', color:handleEmail ? 'rgba(0, 0, 0, 0)': 'red',marginVertical:'1%',justifyContent:'flex-start'}}>Email inválido</Text>
     <Input 
     style={{marginBottom:'3%',backgroundColor:'rgb(235, 235, 235)'}}
+    value= {`${name}`}
+    placeholder='Nome'
+    onChangeText={(name)=>{setName(name)}}>
+    </Input>
+    <Input 
+    style={{marginBottom:'3%',backgroundColor:'rgb(235, 235, 235)'}}
     value={`${email}`} 
     placeholder={'email@email.com'} 
-    onChangeText={(text) => setEmail(text)}
+    onChangeText={(email) => setEmail(email)}
     />
     <InputSenha 
-    value={senha} 
-    onChangeText={(senha)=>{setSenha(senha)}}/>
+    value={password} 
+    onChangeText={(password)=>{setpassword(password)}}/>
     </View>
      <View style={{flexDirection:'row',justifyContent:'center',width:'50%'}}>
       <BotaoG title="Voltar" style={
@@ -68,6 +76,7 @@ export default function Cadastro() {
         backgroundColor="rgb(255, 196, 0)"
         onPress={()=>{
           if(isValidEmail() == false){
+            setHandleEmail(false);
             Alert.alert('Invalid email', 'Use um email válido!!', [{
               text: 'Close',
               onPress: () => console.log('Cancel Pressed'),
@@ -78,7 +87,7 @@ export default function Cadastro() {
               },
             ]);
           }else{
-            postUser({email,senha})
+            postUser({name,email,password})
             router.push('/')
           }
         }

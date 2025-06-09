@@ -3,6 +3,7 @@ import { router } from 'expo-router'
 import { getUser } from '../app/api'
 
 export interface IUser {
+  name:string
   email: string
   senha: string
 }
@@ -21,7 +22,7 @@ const AuthContext = createContext<IAuthContext>({} as IAuthContext)
 
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<IUser>({email: '', senha: ''})
+  const [user, setUser] = useState<IUser>({name:'',email: '', senha: ''})
 
   /*function handleLogin(user: IUser) {
     getUser(user).then(response => {

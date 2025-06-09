@@ -2,46 +2,56 @@
 import { styles } from "./styles"
 import { ImageBackground, Text,View } from "react-native"
 import Botao, { BotaoG } from "./components/botao";
-import { router, Tabs } from "expo-router";
+import MyCheckbox from "./components/checkbox";
+import { router } from "expo-router";
 import { postTask } from "./api";
 import Input from "./components/input";
-import { useState } from "react";
-
-
+import Logo from "./components/logo";
 
 export interface TaskProps{
     taskName:string
-    taskDesc:string
-    taskHour:number
-    taskCompleted:boolean
+    taskDesc?:string
+    taskHour?:number
+    taskCompleted?:boolean
+    taskIsDaily?:boolean
 }
 
 export default function Tasks(task:TaskProps){
     return(
         <ImageBackground
-        source={require('../assets/images/tasks.jpg')}
-        style={styles.background}
-        resizeMode="cover">
-        <Text style={styles.text}>Habits</Text>
-        <View style={{alignItems:'center'}}>
-        <Input 
-        value={task.taskName} 
-        placeholder={"Nome da Task"}
-        style={{backgroundColor: 'rgb(235, 235, 235)',margin:'2%'}} 
-        onChangeText={() =>{}}/>
-        <Input 
-        value={task.taskName} 
-        placeholder={"Descricao Task"}
-        style={{backgroundColor: 'rgb(235, 235, 235)',marginBottom:'10%'}}  
-        onChangeText={() =>{}}/>
+            source={require('../assets/images/cadastro.jpg')}
+            style={styles.background}
+            resizeMode="cover">
+        <Logo style={{alignSelf:'center',color:'white', marginTop:'15%',marginBottom:'5%'}}/>
+        <View style={[styles.linha, {alignSelf:'center',marginBottom:'5%'}]}></View>
+        <Text style={{alignSelf:'center',marginVertical:'5%',fontSize:40,fontWeight:'600'}}>Adicionar Tarefa</Text>
+        <View style={{flex:1,alignItems: 'center',marginTop:'5%'}}>
+            <Input 
+                value={task.taskName} 
+                placeholder={"Nome da Task"}
+                style={{backgroundColor: 'rgb(235, 235, 235)', margin: '3%'}} 
+                onChangeText={() => {}}/>
+            <Input 
+                value={task.taskName} 
+                placeholder={"Descricao Task"}
+                style={{backgroundColor: 'rgb(235, 235, 235)', marginBottom: '2%'}}  
+                onChangeText={() => {}}/>
+            <MyCheckbox>
+                <Text style={{fontSize: 16, color: 'white'}}>Tarefa diária</Text>
+            </MyCheckbox>
+        </View>
+        <View style={{flex:1,alignItems:'center',marginTop:'5%'
+
+            
+        }}>
         <Botao 
-        title={"Adicionar Objetivo"}
-        style = {{marginBottom:'2%',borderColor:'rgb(0, 0, 0)',borderWidth:1.5}}
-        onPress={()=>{postTask(task)}}/>
+            title={"Adicionar nova tarefa"}
+            style = {{marginBottom:'2%',borderColor:'rgb(255, 255, 255)',borderWidth:1.5}}
+            onPress={()=>{postTask(task)}}/>
         <BotaoG 
-        title="Voltar" 
-        style={{borderColor:'rgb(0, 0, 0)',borderWidth:1.5}}
-        onPress={() => router.back()}/>
+            title="Voltar" 
+            style={{borderColor:'rgb(255, 255, 255)',borderWidth:1.5}}
+            onPress={() => router.back()}/>
         </View>
         </ImageBackground>
     )

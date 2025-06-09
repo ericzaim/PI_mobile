@@ -1,6 +1,7 @@
-import { Slot } from "expo-router"
+import { Slot  } from "expo-router"
 import { AuthProvider } from "../context/auth"
 import { useFonts } from 'expo-font';
+import { PaperProvider } from "react-native-paper";
 
 export default function Layout() {
     const fontsLoaded = useFonts({
@@ -9,10 +10,17 @@ export default function Layout() {
         });
         
   return (
-     <AuthProvider>
-       <Slot />
-    </AuthProvider>
+
+    <PaperProvider>
+        <AuthProvider>
+          <Slot/>
+        </AuthProvider>
+    </PaperProvider>
   )
 }
-/*
-   */
+
+/*    <PaperProvider>
+      <AuthProvider>
+        <Slot />
+      </AuthProvider>
+    </PaperProvider>*/

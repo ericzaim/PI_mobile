@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
       fontFamily: 'LeagueSpartan-Black',
       fontSize: 48,
       fontWeight:900,
-      marginVertical:'10%',
       color:'white',
       textShadowColor:'black',
       textShadowRadius:2,
@@ -30,4 +29,9 @@ export const styles = StyleSheet.create({
       backgroundColor: 'steelblue',
       flexDirection: 'row',
     },
+    linha: {
+    borderBottomWidth: 3,
+    borderBottomColor: 'rgba(136, 136, 136, 0.60)',
+    width: '80%',
+  },
 });

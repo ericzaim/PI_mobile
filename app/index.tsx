@@ -1,20 +1,21 @@
 import { useAuth } from '../context/auth';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ImageBackground, Platform } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Botao, { BotaoG } from './components/botao';
+import { BotaoG } from './components/botao';
 import { styles } from './styles';
 import Input, { InputSenha } from './components/input';
 import { router } from 'expo-router';
 import BotaoY from './components/botao';
 
+
 export default function App() {
-  const { user, /*handleLogin,*/setUser } = useAuth();
+  const { user,setUser } = useAuth();
   const [ senha,setSenha ] = useState('')
 
   return (
     <ImageBackground
-      source={require('../assets/images/background.jpg')}
+      source={require('../assets/images/cadastro.jpg')}
       style={styles.background}
       resizeMode="cover"
     >
@@ -26,9 +27,20 @@ export default function App() {
       >
         <View style={styles.container}>
           <Text style={homestyles.text}>Bem-vindo{'\n'}ao{'\n'}HabitTracker</Text>
-          <Text style={{ fontFamily: 'LeagueSpartan-Black', fontSize: 22, fontWeight: '900', marginBottom: '3%' }}>
+            <Text
+            style={{
+              fontFamily: 'LeagueSpartan-Black',
+              fontSize: 22,
+              fontWeight: '900',
+              marginBottom: '3%',
+              color: 'white',
+              textShadowColor: 'rgb(104, 104, 104) 0)',
+              textShadowOffset: { width: 3, height: 3 },
+              textShadowRadius: 3,
+            }}
+            >
             Faça Login ou Cadastre-se
-          </Text>
+            </Text>
           <View style={homestyles.containerbotoes}>
             <Input
               style={{ marginBottom: '3%', marginTop: '15%',backgroundColor: 'rgb(235, 235, 235)' }}
@@ -40,7 +52,7 @@ export default function App() {
             value={senha} 
             onChangeText={(senha) => setSenha(senha) }/>
           </View>
-          <View style={homestyles.linha}></View>
+          <View style={[styles.linha,{ marginBottom: '10%' }]}></View>
           <BotaoY
             style={{ marginBottom: '3%', marginTop: '5%' }}
             title="Login"
@@ -65,6 +77,7 @@ const homestyles = StyleSheet.create({
     width: '90%',
     marginTop: '10%',
     marginBottom: '10%',
+    color:'white'
   },
   containerbotoes: {
     width: '90%',
@@ -74,11 +87,5 @@ const homestyles = StyleSheet.create({
   },
   butcadas: {
     color: 'rgba(255, 196, 0, 0.27)',
-  },
-  linha: {
-    borderBottomWidth: 3,
-    borderBottomColor: 'rgba(136, 136, 136, 0.36)',
-    width: '80%',
-    marginBottom: '10%',
   },
 });

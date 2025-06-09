@@ -1,9 +1,18 @@
 import { IUser } from '../context/auth';
 import { TaskProps } from './tasks';
+import { env } from '../envoirentment';
 
-export const getUser = async (user: IUser) => {
+const baseUrl = env.BASEAPI_URL
+
+interface UserProps {
+  name?:string;
+  email?: string;
+  password?:string
+}
+
+export const getUser = async (user: UserProps) => {
   try {
-    const response = await fetch(`baseurl/user?${user.email}`, {
+    const response = await fetch(user.email ? `${baseUrl}/users/email/?${user.email}` : `${baseUrl}/users/name/?${user.name}`, {
       method: 'GET',
       headers: {
       'Content-Type': 'application/json',
@@ -16,9 +25,9 @@ export const getUser = async (user: IUser) => {
   }
 }
 
-export const postUser = async (user: IUser) => {
+export  async  function postUser(user: UserProps){
   try {
-    const response = await fetch('baseurl/user', {
+    const response = await fetch(`${baseUrl}/users/cadastro`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,7 +43,7 @@ export const postUser = async (user: IUser) => {
 
 export const postTask = async(task:TaskProps)=>{
   try {
-    const response =  await fetch('baseurl/tasks',{
+    const response =  await fetch(`${baseUrl}/tasks`,{
       method:'POST',
       headers:{
         'Content-Type':'application/json',
