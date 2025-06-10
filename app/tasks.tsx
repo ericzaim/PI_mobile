@@ -83,11 +83,11 @@ export default function Tasks(task:TaskProps){
         <div style={{flexDirection:'row'}}>
             <BotaoG 
                 title="Voltar" 
-                style={{borderColor:'rgb(255, 255, 255)',borderWidth:1.5}}
+                style={{borderColor:'rgb(255, 255, 255)',borderWidth:1.5,width:'50%'}}
                 onPress={() => router.back()}/>
             <BotaoG
                 title="Ver Tasks" 
-                style={{borderColor:'rgb(255, 255, 255)',borderWidth:1.5}}
+                style={{borderColor:'rgb(255, 255, 255)',borderWidth:1.5, width:'50%'}}
                 onPress={() => router.push('/taskview')}
             />
         </div>
