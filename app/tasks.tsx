@@ -7,6 +7,7 @@ import { router } from "expo-router";
 import { postTask } from "./api";
 import Input from "./components/input";
 import Logo from "./components/logo";
+import * as Notifications from 'expo-notifications';
 
 export interface TaskProps{
     taskName:string
@@ -14,6 +15,37 @@ export interface TaskProps{
     taskHour?:number
     taskCompleted?:boolean
     taskIsDaily?:boolean
+    userID:number
+}
+
+async function notify(task: TaskProps) {
+    const { status } = await Notifications.requestPermissionsAsync();
+    if (status !== 'granted') {
+        alert('Permissão para notificações não concedida!');
+        return;
+    }
+
+    if (!task.taskHour) return;
+
+    const now = new Date();
+    const trigger = new Date(now);
+    trigger.setHours(task.taskHour, 0, 0, 0);
+
+    if (trigger <= now) {
+        trigger.setDate(trigger.getDate() + 1);
+    }
+    await Notifications.scheduleNotificationAsync({
+        content: {
+            title: `${task.taskName}`,
+            body: task.taskDesc,
+            sound: true,
+        },trigger: {
+            type: Notifications.SchedulableTriggerInputTypes.DAILY,
+            hour: task.taskHour,
+            minute: 0,
+
+            },
+    });
 }
 
 export default function Tasks(task:TaskProps){

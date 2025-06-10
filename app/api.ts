@@ -1,6 +1,7 @@
 import { IUser } from '../context/auth';
-import { TaskProps } from './tasks';
+import Tasks, { TaskProps } from './tasks';
 import { env } from '../envoirentment';
+import { Task } from 'react-native';
 
 const baseUrl = env.BASEAPI_URL
 
@@ -38,6 +39,21 @@ export  async  function postUser(user: UserProps){
   } catch (error) {
     console.error('Error creating user:', error);
     return error
+  }
+}
+
+export async function getTasks(userId: number) {
+  try {
+    const response = await fetch(`${baseUrl}/tasks/user/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.json();
+  } catch (error) {
+    console.error('Error getting tasks by user id:', error);
+    return error;
   }
 }
 
