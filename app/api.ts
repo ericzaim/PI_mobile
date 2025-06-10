@@ -1,5 +1,5 @@
 import { TaskProps } from './pages/tasks';
-import { env } from '../app/envoirentment';
+import { env } from './envoirentment';
 
 const baseUrl = env.BASEAPI_URL
 
