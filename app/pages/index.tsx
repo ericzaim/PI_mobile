@@ -2,11 +2,11 @@ import { useAuth } from '../context/auth';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ImageBackground} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { BotaoG } from './components/botao';
-import { styles } from './styles';
-import Input, { InputSenha } from './components/input';
+import { BotaoG } from '../components/botao';
+import { styles } from './styles/styles';
+import Input, { InputSenha } from '../components/input';
 import { router } from 'expo-router';
-import BotaoY from './components/botao';
+import BotaoY from '../components/botao';
 
 
 export default function App() {

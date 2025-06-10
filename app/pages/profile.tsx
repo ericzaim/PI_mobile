@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text } from "react-native";
-import { getUser } from "./api";
+import { getUser } from "../api";
 
 const user = getUser({ email: 'email@email.com' })
 

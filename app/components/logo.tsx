@@ -1,5 +1,5 @@
 import { Text, TextStyle } from 'react-native';
-import { styles } from "../styles";
+import { styles } from "../pages/styles/styles";
 
 interface LogoProps {
     style?: TextStyle; 

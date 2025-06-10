@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, ImageBackground, Alert } from 'react-native';
-import Logo from './components/logo';
-import { BotaoG } from './components/botao';
-import Input, { InputSenha } from './components/input';
-import { styles } from './styles';
+import Logo from '../components/logo';
+import { BotaoG } from '../components/botao';
+import Input, { InputSenha } from '../components/input';
+import { styles } from './styles/styles';
 import { router } from 'expo-router';
-import { postUser } from './api';
+import { postUser } from '../api';
 import { AuthProvider, IUser } from '../context/auth';
-import BotaoY from './components/botao';
+import BotaoY from '../components/botao';
 
 export default function Cadastro() {
   const [email,setEmail]=useState('');

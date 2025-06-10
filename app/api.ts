@@ -1,7 +1,5 @@
-import { IUser } from '../context/auth';
-import Tasks, { TaskProps } from './tasks';
-import { env } from '../envoirentment';
-import { Task } from 'react-native';
+import { TaskProps } from './pages/tasks';
+import { env } from '../app/envoirentment';
 
 const baseUrl = env.BASEAPI_URL
 

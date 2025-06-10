@@ -1,12 +1,12 @@
 
-import { styles } from "./styles"
+import { styles } from "./styles/styles"
 import { ImageBackground, Text,View } from "react-native"
-import Botao, { BotaoG } from "./components/botao";
-import MyCheckbox from "./components/checkbox";
+import Botao, { BotaoG } from "../components/botao";
+import MyCheckbox from "../components/checkbox";
 import { router } from "expo-router";
-import { postTask } from "./api";
-import Input from "./components/input";
-import Logo from "./components/logo";
+import { postTask } from "../api";
+import Input from "../components/input";
+import Logo from "../components/logo";
 import * as Notifications from 'expo-notifications';
 
 export interface TaskProps{

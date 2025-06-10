@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 import { router } from 'expo-router'
-import { getUser } from '../app/api'
+import { getUser } from '../api'
 
 export interface IUser {
   name:string

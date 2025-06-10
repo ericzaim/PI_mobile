@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getTasks } from './api';
+import { getTasks } from '../api';
 import { TaskProps } from './tasks';
 import { AuthProvider } from '../context/auth';
 
