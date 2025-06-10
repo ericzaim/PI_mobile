@@ -2,7 +2,7 @@
   "expo": {
     "name": "habittracker",
     "slug": "habittracker",
-    "scheme": "app_mobile",
+    "scheme": "appmobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
